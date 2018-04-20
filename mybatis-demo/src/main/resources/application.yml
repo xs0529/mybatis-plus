@@ -1,10 +1,13 @@
+# 端口号
+server:
+   port: 8081
 # datasoure默认使用JDBC
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: root
-    url: jdbc:mysql://127.0.0.1/study?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true
+    password: uAiqwVwjJ8-i
+    url: jdbc:mysql://120.77.253.65:3306/study?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
 
 #mybaits-plus配置，修改主键类型，mapper.xml、type 别名等
 mybatis-plus:
@@ -24,3 +27,5 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true
+#logging.file，设置文件，可以是绝对路径，也可以是相对路径。如：logging.file=my.log
+#logging.path，设置目录，会在该目录下创建spring.log文件，并写入日志内容， 二选一

@@ -1,15 +1,17 @@
 package com.example.mybatisdemo.web;
 import com.example.mybatisdemo.common.utils.StringUtil;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-    import org.springframework.web.bind.annotation.RequestMethod;
-    import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.mybatisdemo.service.IMenuService;
 import com.example.mybatisdemo.common.utils.Result;
 import com.example.mybatisdemo.entity.Menu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *  @description : Menu 控制器
  *  ---------------------------------
@@ -111,5 +113,35 @@ public Object addMenu(Menu param) {
             logger.info("异常信息:{}"+e.getMessage());
             return Result.error("异常信息:{"+e.getClass().getName()+"}");
         }
+    }
+
+    /**
+     * 随机抛出异常
+     */
+    private void randomException() throws Exception {
+        Exception[] exceptions = { //异常集合
+                new NullPointerException(),
+                new ArrayIndexOutOfBoundsException(),
+                new NumberFormatException(),
+                new SQLException()};
+        //发生概率
+        double probability = 0.75;
+        if (Math.random() < probability) {
+            //情况1：要么抛出异常
+            throw exceptions[(int) (Math.random() * exceptions.length)];
+        } else {
+            //情况2：要么继续运行
+        }
+
+    }
+
+    /**
+     * 模拟用户数据访问
+     */
+    @GetMapping("/")
+    @ResponseBody
+    public List index() throws Exception {
+        randomException();
+        return Arrays.asList("正常用户数据1!", "正常用户数据2! 请按F5刷新!!");
     }
 }

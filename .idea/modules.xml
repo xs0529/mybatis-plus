@@ -3,8 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/mybatis-demo/mybatis-demo.iml" filepath="$PROJECT_DIR$/mybatis-demo/mybatis-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mybatis-plus.iml" filepath="$PROJECT_DIR$/mybatis-plus.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mybatisplus/mybatisplus.iml" filepath="$PROJECT_DIR$/mybatisplus/mybatisplus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatisplus.iml" filepath="$PROJECT_DIR$/mybatisplus.iml" />
     </modules>
   </component>
 </project>
