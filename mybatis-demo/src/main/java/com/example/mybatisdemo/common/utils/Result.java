@@ -30,6 +30,13 @@ public class Result extends HashMap<String, Object> {
         return Result;
     }
 
+    public static Result error(Object code,Object msg) {
+        Result Result = new Result();
+        Result.put("code", code);
+        Result.put("msg", msg);
+        return Result;
+    }
+
     public static Result warn(Object msg) {
         Result Result = new Result();
         Result.put("code", WARN);

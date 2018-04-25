@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+<div class="form-toggle"></div>
+<div class="form-panel one">
+    <div class="form-header">
+        <h1>账户登录2</h1>
+    </div>
+    <div class="form-content">
+        <div class="form-group">
+            <label for="username">用户名</label>
+            <input type="text" name="username"/>
+        </div>
+        <div class="form-group">
+            <label for="password">密码</label>
+            <input type="password" name="password"/>
+        </div>
+        <div class="form-group" style="margin: 0px;">
+            <p>
+                <input type="checkbox" name="rememberme"/>&nbsp;&nbsp;记住我</p>
+        </div>
+        <div class="form-group">
+            <button onclick="login()">登录</button>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script th:inline="javascript">
+    var ctx = [[@{/}]];
+</script>
+<script>
+    function login() {
+        var username = $(".one input[name='username']" ).val().trim();
+        var password = $(".one input[name='password']").val().trim();
+        var rememberMe = $(".one input[name='rememberme']").is(':checked');
+        if (username == "") {
+            alert("请输入用户名！");
+            return;
+        }
+        if (password == "") {
+            alert("请输入密码！");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: ctx + "login",
+            data: {
+                "username": username,
+                "password": password,
+                "rememberMe": rememberMe
+            },
+            dataType: "json",
+            success: function(r) {
+                if (r.code == 0) {
+                    location.href = ctx + 'index';
+                } else {
+                    if (r.msg == '验证码错误！') reloadCode();
+                    alert(r.msg);
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
